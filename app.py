@@ -4,6 +4,20 @@ import pandas as pd
 from datetime import datetime, timedelta
 import plotly.express as px
 
+# Define a secure password
+PASSWORD = "LDG1019jellyfish!"  # Replace with your password
+
+# Password input
+st.title("Service Agreement Management System")
+password = st.text_input("Enter the password:", type="password")
+
+# Check password
+if password != PASSWORD:
+    st.error("Access denied. Please enter the correct password.")
+    st.stop()  # Stops the app until the correct password is entered
+else:
+    st.success("Access granted!")
+
 # Database connection
 def get_db_connection():
     return sqlite3.connect("database.db")
