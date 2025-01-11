@@ -5,9 +5,6 @@ from datetime import datetime, timedelta
 import plotly.express as px
 
 # Define a secure password
-PASSWORD = "LDG1019jellyfish!"  # Replace with your password
-
-# Define a secure password
 PASSWORD = "Larkinmanager"  # Replace with your desired password
 
 # Initialize session state for authentication
