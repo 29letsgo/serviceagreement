@@ -4,9 +4,6 @@ import pandas as pd
 from datetime import datetime, timedelta
 import plotly.express as px
 
-# Clear any persistent query parameters
-st.query_params()
-
 # Database connection
 def get_db_connection():
     return sqlite3.connect("database.db")
