@@ -4,39 +4,6 @@ import pandas as pd
 from datetime import datetime, timedelta
 import plotly.express as px
 
-# Define the password
-PASSWORD = "Larkin"  # Replace with your password
-
-# Check if user is authenticated
-if "authenticated" not in st.session_state:
-    st.session_state.authenticated = False
-
-# Check query params for persistent login
-query_params = st.experimental_get_query_params()
-if "authenticated" in query_params and query_params["authenticated"] == ["true"]:
-    st.session_state.authenticated = True
-
-# Login Logic
-if not st.session_state.authenticated:
-    st.title("Service Agreement Management System")
-    password = st.text_input("Enter the password:", type="password")
-
-    if password == PASSWORD:
-        st.session_state.authenticated = True
-        st.experimental_set_query_params(authenticated="true")  # Simulate persistent login
-        st.success("Access granted! Reloading the app...")
-        st.experimental_rerun()  # Rerun to remove the password field
-    elif password:
-        st.error("Incorrect password. Please try again.")
-    st.stop()
-else:
-    # Main App Content
-    st.title("Service Agreement Management System")
-    st.success("Welcome back!")
-
-    # Add the rest of your app logic here
-    st.write("This is your main app content!")
-
 # Database connection
 def get_db_connection():
     return sqlite3.connect("database.db")
