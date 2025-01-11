@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import plotly.express as px
 
 # Clear any persistent query parameters
-st.experimental_set_query_params()
+st.query_params()
 
 # Database connection
 def get_db_connection():
