@@ -7,16 +7,28 @@ import plotly.express as px
 # Define a secure password
 PASSWORD = "LDG1019jellyfish!"  # Replace with your password
 
-# Password input
-st.title("Service Agreement Management System")
-password = st.text_input("Enter the password:", type="password")
+# Define a secure password
+PASSWORD = "Larkinmanager"  # Replace with your desired password
 
-# Check password
-if password != PASSWORD:
-    st.error("Access denied. Please enter the correct password.")
-    st.stop()  # Stops the app until the correct password is entered
+# Initialize session state for authentication
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
+
+# Password protection logic
+if not st.session_state.authenticated:
+    st.title("Service Agreement Management System")
+    password = st.text_input("Enter the password:", type="password")
+
+    if password == PASSWORD:
+        st.session_state.authenticated = True
+        st.success("Access granted!")
+    elif password:
+        st.error("Incorrect password. Please try again.")
+    st.stop()  # Stop the app until the correct password is entered
 else:
-    st.success("Access granted!")
+    # Once authenticated, proceed to the app
+    st.title("Service Agreement Management System")
+    st.success("Welcome back!")
 
 # Database connection
 def get_db_connection():
