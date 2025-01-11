@@ -4,33 +4,33 @@ import pandas as pd
 from datetime import datetime, timedelta
 import plotly.express as px
 
-# Password Protection
+# Define a secure password
 PASSWORD = "Larkin"  # Replace with your desired password
 
 # Initialize session state for authentication
 if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
 
-# Password Input Logic
+# Password Protection Logic
 if not st.session_state.authenticated:
     st.title("Service Agreement Management System")
     password = st.text_input("Enter the password:", type="password")
 
     if password == PASSWORD:
         st.session_state.authenticated = True
-        st.success("Access granted!")
-        st.experimental_rerun()  # Automatically refresh the app to load content
+        st.experimental_set_query_params(authenticated="true")  # Mark session as authenticated
+        st.success("Access granted! Reloading the app...")
     elif password:
         st.error("Incorrect password. Please try again.")
-    st.stop()  # Stop here if not authenticated
+    st.stop()  # Stop the app until the correct password is entered
+else:
+    # Main App Content
+    st.title("Service Agreement Management System")
+    st.success("Welcome back!")
 
-# Main App Logic
-st.title("Service Agreement Management System")
-st.success("Welcome back!")
-
-# Example of App Content
-st.write("This is your main app content!")
-# Add the rest of your app's logic below
+    # Your actual app logic begins here
+    st.write("This is your main app content!")
+    # Add all your app features below
 
 # Database connection
 def get_db_connection():
