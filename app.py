@@ -21,11 +21,15 @@ if not st.session_state.authenticated:
         st.success("Access granted!")
     elif password:
         st.error("Incorrect password. Please try again.")
-    st.stop()  # Stop the app until the correct password is entered
+    st.stop()  # Stop only if the password is incorrect
 else:
-    # Once authenticated, proceed to the app
+    # Proceed to the app once authenticated
     st.title("Service Agreement Management System")
     st.success("Welcome back!")
+
+    # The rest of your app code goes here
+    # Example:
+    st.write("This is the main app content!")
 
 # Database connection
 def get_db_connection():
