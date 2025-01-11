@@ -7,9 +7,11 @@ import plotly.express as px
 # Password Protection
 PASSWORD = "Larkin"  # Replace with your desired password
 
+# Initialize session state for authentication
 if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
 
+# Password Input Logic
 if not st.session_state.authenticated:
     st.title("Service Agreement Management System")
     password = st.text_input("Enter the password:", type="password")
@@ -17,16 +19,18 @@ if not st.session_state.authenticated:
     if password == PASSWORD:
         st.session_state.authenticated = True
         st.success("Access granted!")
+        st.experimental_rerun()  # Automatically refresh the app to load content
     elif password:
         st.error("Incorrect password. Please try again.")
     st.stop()  # Stop here if not authenticated
-else:
-    st.title("Service Agreement Management System")
-    st.success("Welcome back!")
 
-    # Example of app content
-    st.write("This is your main app content!")
-    # Your real app logic goes here
+# Main App Logic
+st.title("Service Agreement Management System")
+st.success("Welcome back!")
+
+# Example of App Content
+st.write("This is your main app content!")
+# Add the rest of your app's logic below
 
 # Database connection
 def get_db_connection():
