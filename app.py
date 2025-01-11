@@ -18,7 +18,7 @@ if not st.session_state.authenticated:
 
     if password == PASSWORD:
         st.session_state.authenticated = True
-        st.experimental_set_query_params(authenticated="true")  # Mark session as authenticated
+        st.set_query_params(authenticated="true")  # Updated to avoid the deprecation warning
         st.success("Access granted! Reloading the app...")
     elif password:
         st.error("Incorrect password. Please try again.")
